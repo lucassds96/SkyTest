@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/colorBlack"
     tools:context=".home.HomeActivity">
 
     <TextView
@@ -15,7 +15,7 @@
         android:text="@string/home_description"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_subtitle"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -55,7 +55,7 @@
                 android:id="@+id/movieDetailTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_title"
                 tools:text="teste"/>
 
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/small_margin"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/colorWhite"
                     tools:text="teste" />
 
                 <ImageView
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/small_margin"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/colorWhite"
                     tools:text="teste"/>
 
             </LinearLayout>
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_margin"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorWhite"
                 tools:text="teste"/>
 
         </LinearLayout>
