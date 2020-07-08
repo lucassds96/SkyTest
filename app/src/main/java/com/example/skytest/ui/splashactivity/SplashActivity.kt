@@ -1,11 +1,11 @@
-package com.example.skytest.splashactivity
+package com.example.skytest.ui.splashactivity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.skytest.R
-import com.example.skytest.home.HomeActivity
+import com.example.skytest.ui.home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
 

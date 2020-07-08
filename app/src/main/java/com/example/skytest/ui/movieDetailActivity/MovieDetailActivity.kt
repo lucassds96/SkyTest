@@ -1,4 +1,4 @@
-package com.example.skytest.movieDetailActivity
+package com.example.skytest.ui.movieDetailActivity
 
 import android.content.Intent
 import android.graphics.PorterDuff

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/design_default_color_on_secondary"
-    tools:context=".splashactivity.SplashActivity">
+    tools:context=".ui.splashactivity.SplashActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/splashLogoIv"

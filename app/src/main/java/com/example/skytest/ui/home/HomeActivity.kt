@@ -1,4 +1,4 @@
-package com.example.skytest.home
+package com.example.skytest.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.skytest.R
 import com.example.skytest.model.Movies
-import com.example.skytest.movieDetailActivity.MovieDetailActivity
+import com.example.skytest.ui.movieDetailActivity.MovieDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {

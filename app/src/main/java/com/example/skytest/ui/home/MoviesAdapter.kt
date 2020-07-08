@@ -1,4 +1,4 @@
-package com.example.skytest.home
+package com.example.skytest.ui.home
 
 import android.content.Context
 import android.view.LayoutInflater

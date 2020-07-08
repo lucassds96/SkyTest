@@ -1,4 +1,4 @@
-package com.example.skytest.movieDetailActivity
+package com.example.skytest.ui.movieDetailActivity
 
 enum class TrailersEnum(val url: String, val id_trailer: String){
     MARVEL("https://www.youtube.com/watch?v=YUfWrIcX4zw", "090f0d8fs9d0dfdf"),

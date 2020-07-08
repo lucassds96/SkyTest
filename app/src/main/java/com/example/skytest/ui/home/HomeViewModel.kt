@@ -1,4 +1,4 @@
-package com.example.skytest.home
+package com.example.skytest.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
