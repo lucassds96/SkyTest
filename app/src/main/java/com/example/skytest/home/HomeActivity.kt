@@ -3,6 +3,7 @@ package com.example.skytest.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +29,12 @@ class HomeActivity : AppCompatActivity() {
     private fun setObservers(){
         homeViewModel.run {
             homeViewModel.showMovies.observe(this@HomeActivity, Observer { initMovies(it) })
+            homeViewModel.showError.observe(this@HomeActivity, Observer { errorApi(it) })
         }
+    }
+
+    private fun errorApi(msg: Throwable){
+        Toast.makeText(this, msg.message, Toast.LENGTH_LONG).show()
     }
 
     private fun initMovies(movies: List<Movies>){

@@ -16,6 +16,7 @@ class HomeViewModel: ViewModel() {
     }
 
     var showMovies= MutableLiveData <List<Movies>>()
+    var showError = MutableLiveData <Throwable>()
 
     private fun getData() {
         val retrofitClient = NetworkUtils
@@ -25,7 +26,7 @@ class HomeViewModel: ViewModel() {
 
         callback.enqueue(object : Callback<List<Movies>> {
             override fun onFailure(call: Call<List<Movies>>, t: Throwable) {
-//                Toast.makeText(baseContext, t.message, Toast.LENGTH_SHORT).show()
+                showError.value = t
             }
 
             override fun onResponse(call: Call<List<Movies>>, response: Response<List<Movies>>) {
