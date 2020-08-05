@@ -13,7 +13,6 @@ import com.example.skytest.model.Movies
 import com.example.skytest.repository.HomeRepositoryImpl
 import com.example.skytest.retrofit.NetworkUtils
 import com.example.skytest.ui.movieDetailActivity.MovieDetailActivity
-import com.example.skytest.utils.Resource
 import com.example.skytest.utils.Status
 import com.example.skytest.utils.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,15 +36,14 @@ class HomeActivity : AppCompatActivity() {
             homeViewModel.getMovies().observe(this@HomeActivity, Observer {
                 when(it.status){
                     Status.SUCCESS -> { it.data?.let { initMovies(it) }}
-//                    Status.ERROR -> {errorApi()}
+                    Status.ERROR -> {errorApi(it.message)}
                 }
             })
-            homeViewModel.showError.observe(this@HomeActivity, Observer { errorApi(it) })
         }
     }
 
-    private fun errorApi(msg: Resource<Throwable>){
-        Toast.makeText(this, msg.message, Toast.LENGTH_LONG).show()
+    private fun errorApi(msg: String?){
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     private fun initMovies(movies: List<Movies>){

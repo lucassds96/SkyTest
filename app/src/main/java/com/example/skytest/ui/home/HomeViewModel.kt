@@ -16,7 +16,6 @@ class HomeViewModel(private val apiHelper: HomeRepositoryHelper): ViewModel() {
     }
 
     private val showMovies = MutableLiveData<Resource<List<Movies>>>()
-    var showError = MutableLiveData <Resource<Throwable>>()
 
     private fun movieData(){
         viewModelScope.launch{
@@ -24,7 +23,7 @@ class HomeViewModel(private val apiHelper: HomeRepositoryHelper): ViewModel() {
                 val moviewFromApi = apiHelper.getMovies()
                 showMovies.postValue(Resource.success(moviewFromApi))
             }catch (e: Exception){
-//                showError.postValue(Resource.error(e.toString(), null))
+                showMovies.postValue(Resource.error(e.toString(), null))
             }
         }
     }
