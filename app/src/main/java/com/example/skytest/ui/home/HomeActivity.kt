@@ -10,7 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.skytest.R
 import com.example.skytest.model.Movies
+import com.example.skytest.repository.HomeRepositoryImpl
+import com.example.skytest.retrofit.NetworkUtils
 import com.example.skytest.ui.movieDetailActivity.MovieDetailActivity
+import com.example.skytest.utils.Resource
+import com.example.skytest.utils.Status
+import com.example.skytest.utils.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
@@ -22,18 +27,24 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         homePb.visibility = View.VISIBLE
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, ViewModelFactory(
+            HomeRepositoryImpl(NetworkUtils.apiService))).get(HomeViewModel::class.java)
         setObservers()
     }
 
     private fun setObservers(){
         homeViewModel.run {
-            homeViewModel.showMovies.observe(this@HomeActivity, Observer { initMovies(it) })
+            homeViewModel.getMovies().observe(this@HomeActivity, Observer {
+                when(it.status){
+                    Status.SUCCESS -> { it.data?.let { initMovies(it) }}
+//                    Status.ERROR -> {errorApi()}
+                }
+            })
             homeViewModel.showError.observe(this@HomeActivity, Observer { errorApi(it) })
         }
     }
 
-    private fun errorApi(msg: Throwable){
+    private fun errorApi(msg: Resource<Throwable>){
         Toast.makeText(this, msg.message, Toast.LENGTH_LONG).show()
     }
 

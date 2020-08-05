@@ -1,43 +1,35 @@
 package com.example.skytest.ui.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.skytest.model.Movies
-import com.example.skytest.retrofit.Api
-import com.example.skytest.retrofit.NetworkUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.skytest.repository.HomeRepositoryHelper
+import com.example.skytest.utils.Resource
+import kotlinx.coroutines.launch
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel(private val apiHelper: HomeRepositoryHelper): ViewModel() {
 
     init {
-        getData()
+        movieData()
     }
 
-    var showMovies= MutableLiveData <List<Movies>>()
-    var showError = MutableLiveData <Throwable>()
+    private val showMovies = MutableLiveData<Resource<List<Movies>>>()
+    var showError = MutableLiveData <Resource<Throwable>>()
 
-    private fun getData() {
-        val retrofitClient = NetworkUtils
-            .getRetrofitInstance(URL_API)
-        val endpoint = retrofitClient.create(Api::class.java)
-        val callback = endpoint.getMovies()
-
-        callback.enqueue(object : Callback<List<Movies>> {
-            override fun onFailure(call: Call<List<Movies>>, t: Throwable) {
-                showError.value = t
+    private fun movieData(){
+        viewModelScope.launch{
+            try {
+                val moviewFromApi = apiHelper.getMovies()
+                showMovies.postValue(Resource.success(moviewFromApi))
+            }catch (e: Exception){
+//                showError.postValue(Resource.error(e.toString(), null))
             }
-
-            override fun onResponse(call: Call<List<Movies>>, response: Response<List<Movies>>) {
-                response.body()?.forEach {
-                    showMovies.value = response.body()
-                }
-            }
-        })
+        }
     }
 
-    companion object {
-        const val URL_API = "https://sky-exercise.herokuapp.com/api/"
+    fun getMovies(): LiveData<Resource<List<Movies>>> {
+        return showMovies
     }
 }

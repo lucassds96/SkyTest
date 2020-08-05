@@ -3,14 +3,16 @@ package com.example.skytest.retrofit
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NetworkUtils{
+object NetworkUtils{
 
-    companion object{
-        fun getRetrofitInstance(path : String) : Retrofit {
+    private const val URL_API = "https://sky-exercise.herokuapp.com/api/"
+
+        private fun getRetrofitInstance() : Retrofit {
             return Retrofit.Builder()
-                .baseUrl(path)
+                .baseUrl(URL_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        }
     }
+
+    val apiService: Api = getRetrofitInstance().create(Api::class.java)
 }
